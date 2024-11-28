@@ -1,0 +1,52 @@
+<section class="my-10">
+    <ul id="user_list" class="max-w-sm m-0 bg-slate-100 border rounded-md">
+        <!-- Handled in JS -->
+    </ul>
+</section>
+
+<script>
+    let baseURL = 'https://jsonplaceholder.typicode.com';
+
+
+    fetch(baseURL + '/users')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            // displayUser(data[0])
+            displayUsers(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+
+    const displayUser = (user) => {
+        let listItem = `<li class="flex even:bg-red-200 justify-start gap-2 py-2 px-4">
+            <div class="h-10 w-10 rounded-full bg-slate-200"></div>
+            <div>
+                <h1 class="font-bold">${user.name}</h1>
+                <span class="text-sm"> <strong>Email: </strong> ${user.email}</span> <br>
+                <span class="text-sm"> <strong>City: </strong> ${user.address?.city || "N/A"}</span>
+            </div>
+        </li>`;
+
+        document.getElementById('user_list').innerHTML = listItem;
+    }
+
+    const displayUsers = (users) => {
+        let listItems = '';
+
+        users.forEach((user) => {
+            listItems += `<li class="flex even:bg-red-200 justify-start gap-2 py-2 px-4">
+                            <div class="h-10 w-10 rounded-full bg-slate-200"></div>
+                            <div>
+                                <h1 class="font-bold">${user.name}</h1>
+                                <span class="text-sm"> <strong>Email: </strong> ${user.email}</span> <br>
+                                <span class="text-sm"> <strong>City: </strong> ${user.address?.city || "N/A"}</span>
+                            </div>
+                        </li>`;
+        });
+
+        document.getElementById('user_list').innerHTML = listItems;
+    }
+</script>
