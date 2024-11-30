@@ -1,0 +1,64 @@
+<section class="my-10 max-w-5xl mx-auto">
+    <span id="errorSpan"></span>
+    <ul id="user_list" class="max-w-sm m-0 bg-slate-100 border rounded-md max-h-96 overflow-y-auto">
+        <!-- Handled in JS -->
+    </ul>
+</section>
+
+<script>
+    let baseURL = 'https://jsonplaceholder.typicode.com';
+
+    const handeError = (errorMessage = '') => {
+        document.getElementById('errorSpan').innerText = errorMessage;
+    }
+
+
+    fetch(baseURL + '/users')
+        .then((response) => response.json())
+        .then((data) => {
+            handeError('')
+            console.log(data);
+            // displayUser(data[0])
+            displayUsers(data);
+        })
+        .catch((error) => {
+            if(error.response == undefined){
+                handeError("Network Error! Check your internet connection.")
+            }else{
+                console.log(error.response);
+                handeError('Could not fetch users')
+            }
+            
+        })
+
+
+    const displayUser = (user) => {
+        let listItem = `<li class="flex even:bg-red-200 justify-start gap-2 py-2 px-4">
+            <div class="h-10 w-10 rounded-full bg-slate-200"></div>
+            <div>
+                <h1 class="font-bold">${user.name}</h1>
+                <span class="text-sm"> <strong>Email: </strong> ${user.email}</span> <br>
+                <span class="text-sm"> <strong>City: </strong> ${user.address?.city || "N/A"}</span>
+            </div>
+        </li>`;
+
+        document.getElementById('user_list').innerHTML = listItem;
+    }
+
+    const displayUsers = (users) => {
+        let listItems = '';
+
+        users.forEach((user) => {
+            listItems += `<li class="flex even:bg-red-200 justify-start gap-2 py-2 px-4">
+                            <div class="h-10 w-10 rounded-full bg-slate-200"></div>
+                            <div>
+                                <h1 class="font-bold">${user.name}</h1>
+                                <span class="text-sm"> <strong>Email: </strong> ${user.email}</span> <br>
+                                <span class="text-sm"> <strong>City: </strong> ${user.address?.city || "N/A"}</span>
+                            </div>
+                        </li>`;
+        });
+
+        document.getElementById('user_list').innerHTML = listItems;
+    }
+</script>
