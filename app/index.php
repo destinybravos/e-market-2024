@@ -12,6 +12,7 @@ n<!DOCTYPE html>
         include_once './components/site_header.html';
         include_once './components/hero_section.html';
         include_once './components/service_grid.html';
+        include_once './components/card_section.html';
     ?>
 </body>
 </html>
