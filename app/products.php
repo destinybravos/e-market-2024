@@ -10,9 +10,10 @@
 <body class="">
     <?php 
         include_once './components/site_header.html';
-        include_once './components/hero_section.html';
-        include_once './components/service_grid.html';
-        include_once './components/card_section.html';
+        include_once './components/products/trending.html';
+        include_once './components/products/latest.html';
+        include_once './components/products/featured.html';
+        include_once './components/products/all.html';
     ?>
 </body>
 </html>
