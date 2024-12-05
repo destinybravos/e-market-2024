@@ -1,0 +1,56 @@
+<section class="max-w-6xl mx-auto my-10">
+    <h2 class="px-5 mt-10 mb-3 text-2xl font-bold">
+        Featured Products
+    </h2>
+    <div id="featured_list" class="flex flex-col flex-wrap items-start justify-start gap-3 px-2 py-2 mx-auto sm:flex-row">
+        <!--JS Populate-->
+    </div>
+</section>
+
+<script>
+    let baseURL = "http://localhost/e-market-2024/api";
+
+    fetch(`${baseURL}/products/fake.php`)
+    .then((response) => response.json())
+    .then((products) => {
+        displayProducts(products);
+    })
+
+    const displayProducts = (products) => {
+        let cards = '';
+
+        products.forEach((product) => {
+            cards += `<div class="mx-2 mt-0 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden">
+                        <aside class="relative w-full h-full ">
+                            <div class="absolute px-3 font-semibold text-red-500 bg-red-100 rounded-md right-2 top-2"> 30%</div>
+                            <div class="flex items-center justify-center w-full h-40 overflow-hidden">
+                                <img src="${product.image}" alt="" class="object-cover min-w-full min-h-full">
+                            </div>
+                            <div class="px-3 pt-3 pb-6">
+                                <h3 class="py-1 text-xs font-semibold uppercase text-slate-600">
+                                     ${product.category}
+                                </h3>
+                                <h3 class="py-1 font-semibold line-clamp-2">
+                                    ${product.name}
+                                </h3>
+                                <div class="py-2 text-xs"><i class="text-yellow-300 fa-solid fa-star"></i><i
+                                        class="text-yellow-300 fa-solid fa-star"></i>
+                                    <i class="text-yellow-300 fa-solid fa-star"></i><i class="text-yellow-300 fa-solid fa-star"></i>
+                                    (120)
+                                </div>
+                
+                                <h2 class="text-lg font-semibold text-red-500">
+                                   ${product.price}
+                                </h2>
+                            </div>
+                        </aside>
+                    </div>`;
+                    console.log(product);
+                    
+        })
+
+        console.log('products', products);
+        document.getElementById('featured_list').innerHTML = cards;
+    }
+
+</script>
