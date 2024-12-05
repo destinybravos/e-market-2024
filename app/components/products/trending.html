@@ -1,0 +1,66 @@
+<section class=" my-10 mx-auto max-w-6xl text-white">
+    <div  class=" px-4 py-3 flex justify-start items-center  bg-primary  ">
+        <h1 class=" text-2xl font-bold">Trending Deals </h1> <span class=" px-7"> Hot offers</span>
+        <span class="text-yellow-400/20"><i class=" fa-solid fa-star"></i></span>
+    </div>
+
+    <div id="trending_List" class=" flex flex-col-3 justify-start items-center mx-auto
+     px-2 py-2 sm:flex-row gap-3 flex-wrap">
+        <!-- will populate in js here -->
+    </div>
+</section>
+
+<script>
+    let trendUrl = 'http://localhost/e-market-2024/api';
+
+    fetch(`${trendUrl}/products/trending.php`)
+    .then((res) => res.json())
+    .then((trendings) => {
+        displayTrends(trendings);
+    })
+
+    const displayTrends = (trendings) => {
+        let cards = '';
+
+        trendings.forEach((trendings) => { 
+            cards += `<div class=" px-5 w-[350px] h-[200px] items-center rounded-lg hover:shadow-lg overflow-hidden">
+            <aside class="w-fit h-full flex justify-start items-center ">
+                    <div class=" h-full w-full">
+                    <div class="h-full w-full">
+                        <img src="${trendings.image}" alt="" class="object-cover min-h-full min-w-full">
+                    </div>
+                </div>
+                <div class="px-3 pt-3 pb-6 mx-auto w-full h-full">
+                    <h3 class="font-semibold text-xs uppercase py-1 text-slate-600">
+                        ${trendings.category}
+                    </h3>
+                    <h3 class="font-semibold py-1 line-clamp-2 text-black">
+                        ${trendings.name}
+                    </h3>
+                    <div class="text-xs py-2"><i class="text-yellow-300 fa-solid fa-star"></i><i
+                            class=" text-yellow-300 fa-solid fa-star"></i>
+                        <i class=" text-yellow-300 fa-solid fa-star"></i><i class=" text-yellow-300 fa-solid fa-star"></i>
+                        (120)
+                    </div>
+    
+                    <h2 class="text-lg text-red-500 font-semibold">
+                       ${trendings.price} <span class=" px-3 bg-red-100 rounded-md text-red-500 text-sm h-3 font-extralight"> -30%</span>
+                    </h2>
+                </div>
+            </aside>
+        </div>`;
+  
+           
+                    console.log(trendings);
+                    
+        })
+
+        console.log('trendings', trendings);
+        document.getElementById('trending_List').innerHTML = cards;
+    }
+
+    
+       
+
+
+</script>
