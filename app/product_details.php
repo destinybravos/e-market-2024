@@ -26,6 +26,12 @@
         </div>
     </section>
 
+    <section>
+        <?php
+            include './components/products/related_products.html'
+        ?>
+    </section>
+
 
     <script>
         let baseURL = 'http://localhost/e-market-2024/api';

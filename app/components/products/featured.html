@@ -8,15 +8,13 @@
 </section>
 
 <script>
-    let baseURL = "http://localhost/e-market-2024/api";
-
     fetch(`${baseURL}/products/fake.php`)
     .then((response) => response.json())
     .then((products) => {
-        displayProducts(products);
+        displayFeatProducts(products);
     })
 
-    const displayProducts = (products) => {
+    const displayFeatProducts = (products) => {
         let cards = '';
 
         products.forEach((product) => {
@@ -45,7 +43,7 @@
                             </div>
                         </aside>
                     </div>`;
-                    console.log(product);
+                    // console.log(product);
                     
         })
 
