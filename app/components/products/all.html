@@ -1,14 +1,28 @@
-<section class="my-10 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-bold mt-10 mb-3 px-5">
+<section class="max-w-6xl mx-auto my-10">
+    <h2 class="px-5 mt-10 mb-3 text-2xl font-bold">
         All Products
     </h2>
-    <div id="products_list" class="flex flex-col mx-auto items-start justify-start px-2 py-2 sm:flex-row gap-3 flex-wrap">
+    <div id="products_list" class="flex flex-col flex-wrap items-start justify-start gap-3 px-2 py-2 mx-auto sm:flex-row">
         <!-- JS Populate -->
     </div>
 </section>
 
 <script>
-    let baseURL = 'http://localhost/e-market-2024/api';
+    let noOfStars = (rating) => {
+        let starRating = Math.round(rating);
+        let stars = '';
+
+        for (let i = 0; i < starRating; i++) {
+            stars += '<i class=" text-yellow-300 fa-solid fa-star"></i>';
+        } 
+
+        for (let i = 0; i < (5 - starRating); i++) {
+            stars += '<i class=" text-slate-300 fa-solid fa-star"></i>';
+        }
+
+
+        return stars;       
+    }
 
     fetch(`${baseURL}/products/fake.php`)
     .then((res) => res.json())
@@ -20,39 +34,43 @@
         let cards = '';
 
         products.forEach((product) => {
-            cards += `<div class="mx-2 mt-0 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden">
+            cards += `<a href="product_details.php?product_id=${product.id}" class="mx-2 mt-0 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden">
                         <aside class="w-full h-full relative ">
-                            <div class="absolute right-2 top-2 px-3 bg-red-100 rounded-md text-red-500 font-semibold"> 30%</div>
+                            ${ (product.discount > 0) ? `<div class="absolute right-2 top-2 px-3 bg-red-100 rounded-md text-red-500 font-semibold"> ${product.discount}%</div>` : ''}
                             <div class="h-40 w-full overflow-hidden flex justify-center items-center">
                                 <img src="${product.image}" alt="" class="object-cover min-h-full min-w-full">
                             </div>
                             <div class="px-3 pt-3 pb-6">
                                 <h3 class="font-semibold text-xs uppercase py-1 text-slate-600">
-                                    Phone gadgets
+                                    ${product.category}
                                 </h3>
                                 <h3 class="font-semibold py-1 line-clamp-2">
-                                    Iwatch 12gen.samsung
-                                    Iwatch 12gen.samsung
-                                    Iwatch 12gen.samsung
+                                    ${product.name}
                                 </h3>
-                                <div class="text-xs py-2"><i class="text-yellow-300 fa-solid fa-star"></i><i
-                                        class=" text-yellow-300 fa-solid fa-star"></i>
-                                    <i class=" text-yellow-300 fa-solid fa-star"></i><i class=" text-yellow-300 fa-solid fa-star"></i>
-                                    (120)
+                                <div class="text-xs py-2">
+                                    ${ noOfStars(product.rating) }
+                                    (${product.no_reviews})
                                 </div>
                 
-                                <h2 class="text-lg text-red-500 font-semibold">
-                                    $1299.94
+                                <h2 class="text-lg font-semibold">
+                                    <span class="text-red-500">
+                                        &#8358; ${product.price - (product.price * (product.discount/100))}
+                                    </span>
+                                    ${ (product.discount > 0) ? `<small class="line-through text-sm text-slate-500">
+                                        &#8358; ${product.price}
+                                    </small>` : '' }
+
                                 </h2>
                             </div>
                         </aside>
-                    </div>`;
-                    console.log(product);
+                    </a>`;
+                    // console.log(product);
                     
         })
 
-        console.log('products', products);
+        // console.log('products', products);
         document.getElementById('products_list').innerHTML = cards;
     }
 
 </script>
+
