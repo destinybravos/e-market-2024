@@ -1,14 +1,18 @@
 <section class="my-10 max-w-6xl mx-auto">
-  <div>
     <h1 class="text-2xl font-bold mt-10 mb-3">
       Latest Products
     </h1>
-  </div>
-  <div class="mx-2 mt-0 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden" id="update_list">
-    
+  <div class="mx-2 mt-0 w-full gap-5 flex-wrap flex flex-col lg:flex-row items-center rounded-lg  overflow-hidden" id="update_list">
+      <div>
+        <p>emmyboy</p>
+      </div>
+
+      <div>
+        2
+      </div>
   </div>
 </section>
-
+ 
 <script>
   fetch (`${baseURL}/products/fake.php`)
   .then ((res) => res.json())
@@ -18,40 +22,43 @@
     latestProducts(products);
   })
 
-  let letestproducts = (products) =>{
+  let latestProducts = (products) =>{
     let updates = '';
 
     products.forEach((product) => {
       
     console.log("product::::", product);
-       updates += ` 
-                    <div class="">
-                          <div class="h-40 w-full overflow-hidden flex justify-center items-center rounded-lg">
-                            <img class="object-cover min-h-full min-w-full" src="${product.image}" alt="">
-                          </div>
-                          <div>
-                            <h3 class="font-semibold text-xm text-slate-400 uppercase py-3">
-                              ${product.categories}
-                            </h3>
-                            <div>
-                              <p class="font-bold text-lg">
-                                ${product.name}
-                              </p>
+       updates += `<a href="product_details.php?product_id=${product.id}" class="mx-2 mt-0 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden">
+                        <aside class="w-full h-full relative ">
+                            ${ (product.discount > 0) ? `<div class="absolute right-2 top-2 px-3 bg-red-100 rounded-md text-red-500 font-semibold"> ${product.discount}%</div>` : ''}
+                            <div class="h-40 w-full overflow-hidden flex justify-center items-center">
+                                <img src="${product.image}" alt="" class="object-cover min-h-full min-w-full">
                             </div>
-                            <div class="my-2 text-xm">
-                              <i class="fas fa-star text-yellow-500"></i>
-                              <i class="fas fa-star text-yellow-500"></i>
-                              <i class="fas fa-star text-yellow-500"></i>
-                              <i class="fas fa-star text-yellow-500"></i>
-                              <i class="fas fa-star text-yellow-500"></i>(120)
+                            <div class="px-3 pt-3 pb-6">
+                                <h3 class="font-semibold text-xs uppercase py-1 text-slate-600">
+                                    ${product.category}
+                                </h3>
+                                <h3 class="font-semibold py-1 line-clamp-2">
+                                    ${product.name}
+                                </h3>
+                                <div class="text-xs py-2">
+                                    ${ noOfStars(product.rating) }
+                                    (${product.no_reviews})
+                                </div>
+                
+                                <h2 class="text-lg font-semibold">
+                                    <span class="text-red-500">
+                                        &#8358; ${product.price - (product.price * (product.discount/100))}
+                                    </span>
+                                    ${ (product.discount > 0) ? `<small class="line-through text-sm text-slate-500">
+                                        &#8358; ${product.price}
+                                    </small>` : '' }
+
+                                </h2>
                             </div>
-                            <div>
-                              <h2 class="font-bold text-primary text-lg">
-                                ${product.price}
-                              </h2>
-                            </div>
-                          </div>
-                  </div>
+                        </aside>
+                    </a>
+         
       `
     });
     document.getElementById('update_list').innerHTML = updates
