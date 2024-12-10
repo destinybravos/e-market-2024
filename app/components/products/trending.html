@@ -11,6 +11,22 @@
 </section>
 
 <script>
+
+let noOfStars = (rating) => {
+        let starRating = Math.round(rating);
+        let stars = '';
+
+        for (let i = 0; i < starRating; i++) {
+            stars += '<i class=" text-yellow-300 fa-solid fa-star"></i>';
+        } 
+
+        for (let i = 0; i < (5 - starRating); i++) {
+            stars += '<i class=" text-slate-300 fa-solid fa-star"></i>';
+        }
+
+
+        return stars;   
+    }
     
     fetch(`${baseURL}/products/fake.php`)
         .then((res) => res.json())
@@ -22,12 +38,12 @@
         let cards = '';
 
         trendings.forEach((trendings) => {
-            cards += `<div class=" w-[350px] rounded-lg hover:shadow-lg overflow-hidden sm:shadow-lg ">
+            cards +=`<a href="product_details.php?product_id=${trendings.id}" class="w-[350px] rounded-lg hover:shadow-lg cursor-pointer overflow-hidden sm:shadow-lg">
                 <aside class="w-fit h-full flex justify-start items-center px-8 ">
                         <div class=" h-full w-full  bg-green-700">
-                        <div class="h-full w-full ">
-                            <img src=" ${trendings.image}" alt="" class="object-cover min-h-full min-w-full">
-                        </div>
+                            <div class="h-full w-full ">
+                                <img src=" ${trendings.image}" alt="" class="object-cover min-h-full min-w-full">
+                         </div>
                     </div>
                     <div class="px-5 pt-3 pb-6 mx-auto w-full h-full">
                         <h3 class="font-semibold text-xs uppercase py-1 text-slate-600">
@@ -49,7 +65,7 @@
                         </div>
                     </div>
                 </aside>
-             </div>`;
+             </a>`;
 
 
         })
