@@ -7,6 +7,9 @@
     <title>E-Market</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="./assets/fa-icons/css/all.css">
+    <script>
+        let baseURL = "http://localhost/e-market-2024/api";
+    </script>
 </head>
 
 <body class="">
@@ -34,7 +37,6 @@
 
 
     <script>
-        let baseURL = 'http://localhost/e-market-2024/api';
 
         let noOfStars = (rating) => {
             let starRating = Math.round(rating);
