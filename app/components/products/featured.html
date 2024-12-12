@@ -2,9 +2,11 @@
     <h2 class="px-5 mt-10 mb-3 text-2xl font-bold">
         Featured Products
     </h2>
-    <div id="featured_list" class="flex flex-col flex-wrap items-start justify-start gap-3 px-2 py-2 mx-auto sm:flex-row">
-        <!--JS Populate-->
+     
+    <div class="flex flex-col flex-wrap items-start gap-3 lg:flex-row " id="featured_list">
+        
     </div>
+    
 </section>
 
 <script>
@@ -18,31 +20,54 @@
         let cards = '';
 
         products.forEach((product) => {
-            cards += `<div class="mx-2 mt-0 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden">
-                        <aside class="relative w-full h-full ">
-                            <div class="absolute px-3 font-semibold text-red-500 bg-red-100 rounded-md right-2 top-2"> 30%</div>
-                            <div class="flex items-center justify-center w-full h-40 overflow-hidden">
-                                <img src="${product.image}" alt="" class="object-cover min-w-full min-h-full">
-                            </div>
-                            <div class="px-3 pt-3 pb-6">
-                                <h3 class="py-1 text-xs font-semibold uppercase text-slate-600">
-                                     ${product.category}
-                                </h3>
-                                <h3 class="py-1 font-semibold line-clamp-2">
-                                    ${product.name}
-                                </h3>
-                                <div class="py-2 text-xs"><i class="text-yellow-300 fa-solid fa-star"></i><i
-                                        class="text-yellow-300 fa-solid fa-star"></i>
-                                    <i class="text-yellow-300 fa-solid fa-star"></i><i class="text-yellow-300 fa-solid fa-star"></i>
-                                    (120)
-                                </div>
-                
-                                <h2 class="text-lg font-semibold text-red-500">
-                                   ${product.price}
-                                </h2>
-                            </div>
-                        </aside>
-                    </div>`;
+            cards += `<a href="product_details.php?product_id=${product.id}">
+            <div class="relative p-4 overflow-hidden rounded-r-lg shadow-lg w-72 hover:shadow-2xl" >
+                <aside class="absolute left-0 mx-0 bg-pink-200 w-44 rounded-r-xl top-2">
+                    <h1  class="text-lg">
+                        <span class="ml-2 text-yellow-500"><i class="fa-solid fa-face-smile"></i></span><span class="font-extrabold text-pink-600">Konga</span><span class="font-extrabold text-stone-800">Now</span><span class="ml-1 text-pink-600"><i class="fa-solid fa-truck-fast"></i></span>
+                    </h1>    
+                </aside>
+                <aside class="flex items-center justify-center w-full h-40 overflow-hidden">
+                    <img src="${product.image}" alt="" class="object-cover min-w-full min-h-full">
+                </aside>
+                <aside class="py-2">
+                    <h3 class="text-lg font-semibold">
+                        ${product.category}
+                    </h3>
+                </aside>   
+                <aside>
+                    <h1 class="pb-2 text-lg font-medium line-clamp-1">
+                        ${product.name}
+                    </h1>
+                </aside>
+                <aside class="flex gap-10 pb-2">
+                    <aside>
+                        <h2 class="text-xl font-bold">
+                            &#8358;${product.price - (product.price * (product.discount/100))}
+                        </h2>
+                    </aside>
+                    ${ (product.discount > 0) ? `<aside class="">
+                        <small class="text-sm font-medium line-through text-slate-600">
+                            &#8358;${product.price}
+                        </small>
+                        </aside>` : '' }
+                    ${ (product.discount > 0) ? `<aside>
+                          <h2 class="p-1 font-bold text-red-500 bg-red-200 rounded-xl">
+                            -${product.discount}%
+                        </h2>
+                    </aside>` : '' }
+                </aside>
+                ${ (product.discount > 0) ?`<aside>
+                    <h4 class="pb-2 font-medium text-green-900">
+                        You just saved &#8358; ${(product.price * (product.discount/100))}
+                    </h4>
+                </aside>`  : '' }
+                <aside class="py-2 text-xs">
+                   ${ noOfStars(product.rating) }
+                    (${product.no_reviews} Reviews) 
+                </aside>
+            </div>
+        </a>`;
                     // console.log(product);
                     
         })
