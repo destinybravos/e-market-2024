@@ -1,1 +1,57 @@
-Related Product
+<section class="max-w-6xl mx-auto my-10">
+    <h2 class="px-5 mt-10 mb-3 text-2xl font-bold">
+        Related Products
+    </h2>
+    <div id="related_products" class="flex flex-col flex-wrap items-start justify-start gap-3 px-2 py-2 mx-auto sm:flex-row">
+        
+    </div>
+</section>
+
+<script>
+         fetch(`${baseURL}/products/fake.php`)
+    .then((res) => res.json())
+    .then((products) => {
+        displayrelProducts(products);
+    })
+
+    const displayrelProducts = (products) => {
+        let cards = '';
+
+        products.forEach((product) => {
+            cards += `<a href="product_details.php?product_id=${product.id}" class="mx-2 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden">
+                        <aside class="w-full h-full relative ">
+                            ${ (product.discount > 0) ? `<div class="absolute right-2 top-2 px-3 bg-red-100 rounded-md text-red-500 font-semibold"> ${product.discount}%</div>` : ''}
+                            <div class="h-40 w-50% overflow-hidden flex justify-center items-center">
+                                <img src="${product.image}" alt="" class="object-cover min-h-full min-w-full">
+                            </div>
+                            <div class="px-3 pt-3 pb-6">
+                                <h3 class="font-semibold text-xs uppercase py-1 text-slate-600">
+                                    ${product.category}
+                                </h3>
+                                <h3 class="font-semibold py-1 line-clamp-2">
+                                    ${product.name}
+                                </h3>
+                                <div class="text-xs py-2">
+                                    ${ noOfStars(product.rating) }
+                                    (${product.no_reviews})
+                                </div>
+                
+                                <h2 class="text-lg font-semibold">
+                                    <span class="text-red-500">
+                                        &#8358; ${product.price - (product.price * (product.discount/100))}
+                                    </span>
+                                    ${ (product.discount > 0) ? `<small class="line-through text-sm text-slate-500">
+                                        &#8358; ${product.price}
+                                    </small>` : '' }
+
+                                </h2>
+                            </div>
+                        </aside>
+                    </a>`;
+                    
+        })
+
+        document.getElementById('related_products').innerHTML = cards;
+    }
+
+</script>
