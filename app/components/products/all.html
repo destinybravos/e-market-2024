@@ -13,7 +13,7 @@
         let stars = '';
 
         for (let i = 0; i < starRating; i++) {
-            stars += '<i class=" text-yellow-300 fa-solid fa-star"></i>';
+            stars += '<i class="text-yellow-300  fa-solid fa-star"></i>';
         } 
 
         for (let i = 0; i < (5 - starRating); i++) {
@@ -35,19 +35,19 @@
 
         products.forEach((product) => {
             cards += `<a href="product_details.php?product_id=${product.id}" class="mx-2 mt-0 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden">
-                        <aside class="w-full h-full relative ">
-                            ${ (product.discount > 0) ? `<div class="absolute right-2 top-2 px-3 bg-red-100 rounded-md text-red-500 font-semibold"> ${product.discount}%</div>` : ''}
-                            <div class="h-40 w-full overflow-hidden flex justify-center items-center">
-                                <img src="${product.image}" alt="" class="object-cover min-h-full min-w-full">
+                        <aside class="relative w-full h-full ">
+                            ${ (product.discount > 0) ? `<div class="absolute px-3 font-semibold text-red-500 bg-red-100 rounded-md right-2 top-2"> ${product.discount}%</div>` : ''}
+                            <div class="flex items-center justify-center w-full h-40 overflow-hidden">
+                                <img src="${product.image}" alt="" class="object-cover min-w-full min-h-full">
                             </div>
                             <div class="px-3 pt-3 pb-6">
-                                <h3 class="font-semibold text-xs uppercase py-1 text-slate-600">
+                                <h3 class="py-1 text-xs font-semibold uppercase text-slate-600">
                                     ${product.category}
                                 </h3>
-                                <h3 class="font-semibold py-1 line-clamp-2">
+                                <h3 class="py-1 font-semibold line-clamp-2">
                                     ${product.name}
                                 </h3>
-                                <div class="text-xs py-2">
+                                <div class="py-2 text-xs">
                                     ${ noOfStars(product.rating) }
                                     (${product.no_reviews})
                                 </div>
@@ -56,7 +56,7 @@
                                     <span class="text-red-500">
                                         &#8358; ${product.price - (product.price * (product.discount/100))}
                                     </span>
-                                    ${ (product.discount > 0) ? `<small class="line-through text-sm text-slate-500">
+                                    ${ (product.discount > 0) ? `<small class="text-sm line-through text-slate-500">
                                         &#8358; ${product.price}
                                     </small>` : '' }
 
