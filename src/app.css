@@ -4,5 +4,5 @@
 
 
 .inpute{
-  @apply block min-w-full bg-white rounded-lg border-b-2 pt-10 mb-5;
+  @apply border-b border-slate-500 py-1 w-full focus:outline-none focus:ring-0;
 }
