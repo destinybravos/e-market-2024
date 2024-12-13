@@ -1,7 +1,134 @@
-<div class="px-6">
-    <header>
+<div class="px-6 max-w-4xl ">
 
+    <header class=" py-5 flex justify-start items-center">
+        <div class="text-2xl font-semibold flex-1">
+            Dashbaord
+        </div>
+        <div class="font-normal opacity-70 py-1 rounded-md flex items-center border-none  text-black hover:bg-purple-500 cursor-auto">
+           <span class="flex items-center"><input type="text"placeholder="search"class=" px-2 rounded-lg ">
+            <i class="bg-purple-900 px-2 rounded-lg py-1 active:bg-blue-700 text-white fa-solid fa-search"></i></span>
+        </div>    
     </header>
 
-    
+    <section class="">
+          <!-- {/* Dashboard Statistics */} -->
+        <main class='flex-grow '>
+            <!-- {/* TOP GRID */} -->
+            <div class='grid grid-cols-3 gap-2 '>
+              <div class="flex flex-col-2 justify-start items-center min-h-32 w-fit gap-12 rounded-xl
+                         shadow-lg bg-white/60 px-3">
+                        <aside class=" py-2 px-3" > 
+                            <p class='text-slate-600 font-bold'> Total applictaions </p>
+                            <div class='flex items-center text-2xl font-bold mt-4 gap-2 '>
+                            <FaUser/> 35000
+                            </div>
+                            <h3 class='text-slate-700 font-semibold text-xs mt-4 flex items-center gap-2'><input type="checkbox" name="" class="checkboxgroup"> <spa class=" text-blue-300 font-mono">+60% inc</spa> <FaChevronRight /> </h3>
+                        </aside>
+                        
+                        <aside class="py-2 px-2 ">
+                            <h1 class="text-3xl relative bottom-4 text-black left-9 "> ...</h1>
+                            <div class=" w-[76px] h-[76px] font-bold  border-y-orange-500 border-l-green-600 border-[9px]  rounded-full  ">
+                                <h1 class="  flex justify-center items-center py-3">
+                                    70%
+                                </h1>
+                            </div>
+                    </aside>
+              </div>
+              <div class="flex flex-col-2 justify-start items-center min-h-32 w-fit gap-12 rounded-xl
+                         shadow-lg bg-white/60 px-3">
+                        <aside class=" py-2 px-3" > 
+                            <p class='text-slate-600 font-bold'> Shortlisted candidates  </p>
+                            <div class='flex items-center text-2xl font-bold mt-4 gap-2 '>
+                            <FaUser/> 5640
+                            </div>
+                            <h3 class='text-slate-700 font-semibold text-xs mt-4 flex items-center gap-2'><input type="checkbox" name="" class="checkboxgroup"> <spa class=" text-purple-500 font-mono">+60% inc</spa> <FaChevronRight /> </h3>
+                        </aside>
+                        
+                        <aside class="py-2 px-2 ">
+                            <h1 class="text-3xl relative bottom-4 text-black left-9 "> ...</h1>
+                            <div class=" w-[76px] h-[76px] font-bold  border-x-green-400 border-b-gray-600 border-[9px]  rounded-full  ">
+                                <h1 class="  flex justify-center items-center py-3">
+                                    20%
+                                </h1>
+                            </div>
+                    </aside>
+              </div>
+              <div class="flex flex-col-2 justify-start items-center min-h-32 w-fit gap-12 rounded-xl
+                         shadow-lg bg-white/60 px-3">
+                        <aside class=" py-2 px-3" > 
+                            <p class='text-slate-600 font-bold'> Rejected Applicates </p>
+                            <div class='flex items-center text-2xl font-bold mt-4 gap-2 '>
+                            <FaUser/> 381
+                            </div>
+                            <h3 class='text-slate-700 font-semibold text-xs mt-4 flex items-center gap-2'><input type="checkbox" name="" class="checkboxgroup"> <spa class=" text-orange-800 font-mono">+60% inc</spa> <FaChevronRight /> </h3>
+                        </aside>
+                        
+                        <aside class="py-2 px-2 ">
+                            <h1 class="text-3xl relative bottom-4 text-black left-9 "> ...</h1>
+                            <div class=" w-[76px] h-[76px] font-bold  border-y-yellow-400 border-t-red-600 border-[9px]  rounded-full  ">
+                                <h1 class="  flex justify-center items-center py-3">
+                                    9%
+                                </h1>
+                            </div>
+                    </aside>
+              </div>
+
+            </div>
+              <!-- <aside class="min-h-32 rounded-xl py-2 px-3 bg-yellow-200 > 
+                <p class='text-slate-600'> Staffs </p>
+                <div class='flex items-center text-2xl font-bold mt-4 gap-2 '>
+                <PiUserSquareFill /> 30
+                </div>
+                <p class='text-slate-700 font-light text-sm'> 40 Staff Building</p>
+                <h3 class='text-slate-700 font-semibold text-xs mt-4 flex items-center gap-2'> <span>Go To Employeees</span> <FaChevronRight /> </h3>
+              </aside>
+              <aside class="min-h-32 rounded-xl py-2 px-3 bg-purple-300" > 
+                <p class='text-slate-600'> Courses </p>
+                <div class='flex items-center text-2xl font-bold mt-4 gap-2'>
+                <SiBookstack /> Over 300
+                </div>
+                <p class='text-slate-700 font-light text-sm'> 120 lecture Buildings</p>
+                <h3 class='text-slate-700 font-semibold text-xs mt-4 flex items-center gap-2'> <span>Check Syllables</span> <FaChevronRight /> </h3>
+              </aside> -->
+           
+        </main>
+
+            <!-- {/* 2nd card */} -->
+          <main class="flex-grow py-7 ">
+           
+            <section class="flex flex-cols-2 md:flex-flex-3 gap-12  ">
+                <div class='w-3/5 col-span-2 '>
+                    <aside class="min-h-52 rounded-xl py-2 px-3  bg-white/60 shadow-lg" > 
+                        <div class=" flex  justify-start items-center font-mono text-black">
+                            <aside class="flex-1">Statistics</aside>
+                            <aside class="">week</aside>
+                        </div>
+                        <p class='text-slate-600'> Courses </p>
+                        <div class='flex items-center text-2xl font-bold mt-4 gap-2'>
+                            <SiBookstack /> Over 300
+                        </div>
+                        <p class='text-slate-700 font-light text-sm'> 120 lecture Buildings</p>
+                        <h3 class='text-slate-700 font-semibold text-xs mt-4 flex items-center gap-2'>
+                             <span>Check Syllables</span> <FaChevronRight /> 
+                        </h3>
+                    </aside>
+                </div>
+                <div class='w-1/3 h-fit flex-1'>
+                    <aside class="min-h-52 rounded-xl py-2 px-3  bg-white/60 shadow-lg" > 
+                        <p class='text-slate-600'> Courses </p>
+                        <div class='flex items-center text-2xl font-bold mt-4 gap-2'>
+                            <SiBookstack /> Over 300
+                        </div>
+                        <p class='text-slate-700 font-light text-sm'> 120 lecture Buildings</p>
+                        <h3 class='text-slate-700 font-semibold text-xs mt-4 flex items-center gap-2'>
+                             <span>Check Syllables</span> <FaChevronRight /> 
+                        </h3>
+                    </aside>
+                </div>
+               </section>
+          </main>
+    </section>
+
+
+</div>
 </div>
