@@ -26,12 +26,12 @@
     <!-- Main Section -->
     <main class="min-h-[4000px] ml-48">
         <!-- Stats and Search Section -->
-        <section>
+        <section class="mr-60">
             <?php include_once "components/dashboard_content.html"; ?>
         </section>
 
         <!-- Profile Summary Section -->
-        <section>
+        <section class="fixed h-dvh w-60 bg-white right-0 top-0">
             <?php include_once "components/profile_summary.html"; ?>
         </section>
     </main>
