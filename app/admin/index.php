@@ -7,6 +7,14 @@
     <title>E-Market Dashboard</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../assets/fa-icons/css/all.css">
+    <script>
+        let loginState = localStorage.getItem('is_logded_in');
+
+        if (loginState == null || loginState == undefined || loginState == 'false') {
+            window.location.href = 'login.html';
+        }
+        
+    </script>
 </head>
 
 <body class="bg-background">

@@ -6,24 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/styles.css">
   <title>Login</title>
+  <script>
+    let loginState = localStorage.getItem('is_logded_in');
+
+    if (loginState == 'true') {
+        window.location.href = 'index.php';
+    }
+    
+</script>
 </head>
 
 <body>
   <section class="max-w-full min-h-dvh flex items-center bg-primary/85">
     <div class="max-w-96 m-auto">
       <div class="border-2 p-5 rounded-md bg-white">
-        <form method="post">
+        <form method="post" name="form_login">
           <div class="text-center mb-7">
             <h1 class="text-4xl mb-2">Sign in</h1>
             <p class="text-xs font-semibold">Sign in to continue</p>
           </div>
 
           <div class="max-w-full space-y-7 mb-8">
-            <input class="inpute" type="email" placeholder="Email">
-            <input class="inpute" type="password" placeholder="Password">
+            <input class="inpute" type="email" placeholder="Email" name="email">
+            <input class="inpute" type="password" placeholder="Password" name="password">
             <div class="flex items-start justify-between">
               <aside>
-                <input type="checkbox" name="terms" id="terms" required>
+                <input type="checkbox" name="terms" id="terms">
                 <label for="terms" class="text-sm">
                   Remember me
                 </label>
@@ -34,6 +42,8 @@
               </aside>
             </div>
           </div>
+          <!-- Error Span to show error message -->
+          <span class="text-red-500 text-sm italic mb-2 block" id="errorSpan"></span>
 
           <div class="bg-secondary text-center text-white py-2 rounded-md">
             <button class="max-w-full font-bold">
@@ -51,6 +61,35 @@
       </div>
     </div>
   </section>
+
+  <script>
+    let loginForm = document.forms['form_login'];
+
+    loginForm.addEventListener('submit', (ev) => {
+      ev.preventDefault()
+      let formData = new FormData(ev.target); // Created an empty JavaScript FormData() object
+
+      fetch('http://localhost/e-market-2024/api/user/authenticate.php', {
+        method: 'POST',
+        body: formData
+      })
+        .then((res) => res.json())
+        .then((responseData) => {
+          if (responseData.success == true) {
+            ev.target.reset();
+            localStorage.setItem('is_logded_in', true);
+            window.location.href = './index.php' // Redirecting to dashboard
+          } else {
+            document.getElementById('errorSpan').innerText = responseData.message;
+            alert(responseData.message)
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
+    })
+  </script>
 </body>
 
 </html>
