@@ -13,7 +13,6 @@
         if (loginState == null || loginState == undefined || loginState == 'false') {
             window.location.href = 'login.html';
         }
-        
     </script>
 </head>
 

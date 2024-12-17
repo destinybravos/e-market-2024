@@ -21,10 +21,18 @@ try {
 
     if ($executeQuery->num_rows > 0) {
         $user = $executeQuery->fetch_assoc(); // Fetch the user record
+        $accessToken = createAccessToken($user['email'], $conn);
+
+        // Verify if access token was stored
+        if ($accessToken == null) {
+            throw new Exception("Personal Access token could not be created", 500);
+        }
+
         header('HTTP/1.1 200');
         $response['success'] = true;
         $response['message'] = "User authentication successfull";
         $response['user'] = $user;
+        $response['auth_token'] = $accessToken;
     }else{
         header('HTTP/1.1 404');
         $response['success'] = false;
@@ -40,3 +48,14 @@ try {
 }
 
 echo json_encode($response);
+
+
+function createAccessToken($email, $conn){
+    $token = base64_encode($email);
+    $sqlStatement = "INSERT INTO access_tokens(email, token) VALUES('$email', '$token')";
+    $executeQuery = $conn->query($sqlStatement);
+    if ($executeQuery) {
+        return $token;
+    }
+    return null;
+}

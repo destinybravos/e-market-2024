@@ -57,7 +57,7 @@
         email VARCHAR(255) NOT NULL,
         token VARCHAR(255) NOT NULL,
         created_at DATETIME DEFAULT(CURRENT_TIMESTAMP),
-        expires_at DATETIME
+        expires_at DATETIME DEFAULT(NULL)
     )";
 
     $conn->query($sqlAccessToken);
