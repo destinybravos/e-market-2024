@@ -24,7 +24,7 @@
         return stars;       
     }
 
-    fetch(`${baseURL}/products/fake.php`)
+    fetch(`${baseURL}/products/fetch_products.php`)
     .then((res) => res.json())
     .then((products) => {
         displayProducts(products);

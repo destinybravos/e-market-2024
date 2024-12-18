@@ -29,6 +29,7 @@ try {
         header('HTTP/1.1 200');
         $response['success'] = true;
         $response['message'] = 'Shop Record created successfully';
+        $response['store'] = getUserShop($userId, $conn); // Get the user shop info
     } else {
         header('HTTP/1.1 500');
         $response['success'] = false;
@@ -44,4 +45,14 @@ try {
 }
 
 echo json_encode($response);
+
+function getUserShop($id, $conn){
+    $sqlStatement = "SELECT * FROM shops WHERE user_id='$id'";
+    $result = $conn->query($sqlStatement);
+    if ($result->num_rows > 0) {
+        return $result->fetch_assoc();
+    }
+
+    return null;
+}
 ?>
