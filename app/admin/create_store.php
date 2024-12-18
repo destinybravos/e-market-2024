@@ -13,12 +13,6 @@
         if (loginState == null || loginState == undefined || loginState == 'false') {
             window.location.href = 'login.html';
         }
-
-        let user = getUserObject(); // Get the user details from the AuthServices
-        // Check if the user store is null. If true, redirect the user to create a store
-        if (user.store == null) {
-            window.location.href = 'create_store.php';
-        }
     </script>
 </head>
 
@@ -33,7 +27,7 @@
     <main class="min-h-[4000px] ml-48">
         <!-- Stats and Search Section -->
         <section class="mr-60">
-            <?php include_once "components/dashboard_content.html"; ?>
+            
         </section>
 
         <!-- Profile Summary Section -->

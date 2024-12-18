@@ -28,15 +28,15 @@
     )";
     $conn->query($sqlStatement);
 
-    // Create Shop Tables
+    // Create categories Tables
     $sqlStatement = "CREATE TABLE IF NOT EXISTS categories(
         id INT(6) PRIMARY KEY AUTO_INCREMENT,
-        name INT(6) NOT NULL,
+        name VARCHAR(100) NOT NULL,,
         description TEXT
     )";
     $conn->query($sqlStatement);
 
-    // Create Shop Tables
+    // Create products Tables
     $sqlStatement = "CREATE TABLE IF NOT EXISTS products(
         id INT(6) PRIMARY KEY AUTO_INCREMENT,
         category_id INT(6) NOT NULL,
