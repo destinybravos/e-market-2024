@@ -5,7 +5,7 @@ include_once "../utils/connect.php";
 include_once "../utils/validate.php";
 
 $response = [];
-$defaultImage = 'http://localhost/e-market-2024/app/assets/samsung-galaxy-s23-ultra-5g-1.png';
+$defaultImage = 'http://localhost/e-market-2024/api/products/default-product-image.png';
 
 try {
     include_once "../utils/AuthMiddleware.php";
@@ -38,8 +38,19 @@ try {
         throw new Exception("Shop does not exists", 404);
     }
 
-    if (isset($_POST['image']) && !empty($_POST['image'])) {
+    if (isset($_FILES['image']) && !empty($_FILES['image'])) {
         // Process the image
+        $temp_name = $_FILES['image']['tmp_name'];
+        $image_name = str_replace(' ', '_', $_FILES['image']['name']);
+        if(!file_exists('images/')){
+            mkdir('images/');
+        }
+        $storagePath = 'images/' . time() . $image_name;
+        if (move_uploaded_file($temp_name, $storagePath)) {
+            $image = 'http://localhost/e-market-2024/api/products/' . $storagePath;
+        }else{
+            throw new Exception("Could not upload product image", 500);
+        }
     }else{
         $image = $defaultImage;
     }

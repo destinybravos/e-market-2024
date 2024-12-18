@@ -41,7 +41,7 @@
                     <h1 class="font-semibold text-xl mb-2">
                         Add Category
                     </h1>
-                    <form class="px-4 py-2 bg-white rounded-lg space-y-4" onsubmit="saveProduct(event)">
+                    <form class="px-4 py-2 bg-white rounded-lg space-y-4" onsubmit="saveProduct(event)" enctype="multipart/form-data">
                         <input class="inpute" type="file" placeholder="Product Name" name="image" accept="image/*" multiple>
                         <select class="inpute" id="cat_options" name="category_id" required>
 
