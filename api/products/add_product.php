@@ -42,14 +42,18 @@ try {
         // Process the image
         $temp_name = $_FILES['image']['tmp_name'];
         $image_name = str_replace(' ', '_', $_FILES['image']['name']);
-        if(!file_exists('images/')){
-            mkdir('images/');
-        }
-        $storagePath = 'images/' . time() . $image_name;
-        if (move_uploaded_file($temp_name, $storagePath)) {
-            $image = 'http://localhost/e-market-2024/api/products/' . $storagePath;
-        }else{
-            throw new Exception("Could not upload product image", 500);
+        if ($image_name != '') {
+            if(!file_exists('images/')){
+                mkdir('images/');
+            }
+            $storagePath = 'images/' . time() . $image_name;
+            if (move_uploaded_file($temp_name, $storagePath)) {
+                $image = 'http://localhost/e-market-2024/api/products/' . $storagePath;
+            }else{
+                throw new Exception("Could not upload product image", 500);
+            }
+        } else {
+            $image = $defaultImage;
         }
     }else{
         $image = $defaultImage;
