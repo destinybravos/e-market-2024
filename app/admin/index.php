@@ -7,11 +7,17 @@
     <title>E-Market Dashboard</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../assets/fa-icons/css/all.css">
+    <script src="./js/AuthServices.js"></script>
     <script>
         let loginState = localStorage.getItem('is_logded_in');
-
         if (loginState == null || loginState == undefined || loginState == 'false') {
             window.location.href = 'login.html';
+        }
+
+        let user = getUserObject(); // Get the user details from the AuthServices
+        // Check if the user store is null. If true, redirect the user to create a store
+        if (user.store == null) {
+            window.location.href = 'create_store.php';
         }
     </script>
 </head>

@@ -14,20 +14,20 @@
 </section>
  
 <script>
-  fetch (`${baseURL}/products/fake.php`)
+  fetch (`${baseURL}/products/fetch_products.php`)
   .then ((res) => res.json())
-  .then ((products) =>{
+  .then ((data) =>{
     console.log("jjjjjjjjjjjjj");
     
-    latestProducts(products);
+    latestProducts(data.products);
   })
 
   let latestProducts = (products) =>{
     let updates = '';
 
+    console.log("product::::", products);
     products.forEach((product) => {
       
-    console.log("product::::", product);
        updates += `<a href="product_details.php?product_id=${product.id}" class="mx-2 mt-0 w-[250px]  items-center rounded-lg hover:shadow-lg overflow-hidden">
                         <aside class="w-full h-full relative ">
                             ${ (product.discount > 0) ? `<div class="absolute right-2 top-2 px-3 bg-red-100 rounded-md text-red-500 font-semibold"> ${product.discount}%</div>` : ''}
@@ -36,7 +36,7 @@
                             </div>
                             <div class="px-3 pt-3 pb-6">
                                 <h3 class="font-semibold text-xs uppercase py-1 text-slate-600">
-                                    ${product.category}
+                                    ${product.category.name}
                                 </h3>
                                 <h3 class="font-semibold py-1 line-clamp-2">
                                     ${product.name}

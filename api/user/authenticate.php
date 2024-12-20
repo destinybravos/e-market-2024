@@ -28,6 +28,9 @@ try {
             throw new Exception("Personal Access token could not be created", 500);
         }
 
+        // Get the shop of the user
+        $user['store'] = getUserShop($user['id'], $conn);
+
         header('HTTP/1.1 200');
         $response['success'] = true;
         $response['message'] = "User authentication successfull";
@@ -57,5 +60,15 @@ function createAccessToken($email, $conn){
     if ($executeQuery) {
         return $token;
     }
+    return null;
+}
+
+function getUserShop($id, $conn){
+    $sqlStatement = "SELECT * FROM shops WHERE user_id='$id'";
+    $result = $conn->query($sqlStatement);
+    if ($result->num_rows > 0) {
+        return $result->fetch_assoc();
+    }
+
     return null;
 }
